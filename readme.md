@@ -15,14 +15,7 @@ Build a AWS S3 like service. The following link has complete list of AWS S3 REST
 2. Buckets
     - bucketName : string \<unique>
     - CreatedBy : string
-    - fileList : [ fileId : string ]
-
-3. Objects
-    - fileHash : string(16) \<unique>
-    - fileName : string
-    - fileSize : number
-    - filePath : string
-    - fileType : 'image' | 'video' | 'PDF' | 'other
+    - ObjectList : [{}]
 
 
 #### Functions
