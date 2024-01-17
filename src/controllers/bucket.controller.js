@@ -2,7 +2,6 @@ import { Bucket } from "../models/buckets.model.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import GenerateHash from "../utils/generateHash.js";
 import fs from "fs";
-const path = require('path');
 
 const ListBuckets = asyncHandler(async (req, res) => {
     const _userId = "5f9d88b9c7b8d6b4c8b0b0b4";
@@ -128,7 +127,7 @@ const getObject = asyncHandler(async (req, res) => {
             });
         }
 
-        const filePath = (process.env.NODE_ENV === "production") ? path.resolve(object.filePath) : object.filePath;
+        const filePath = (process.env.NODE_ENV === "production") ? object.filePath : object.filePath;
 
         // we have to send the file as a response
         res.status(200).sendFile(filePath, {
