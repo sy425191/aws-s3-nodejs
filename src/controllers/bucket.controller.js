@@ -8,7 +8,11 @@ const ListBuckets = asyncHandler(async (req, res) => {
 
     try {
         const buckets = await Bucket.find({ createdBy: _userId });
-        res.status(200).json(buckets);
+        // only give back the bucket names
+
+        const bucketNames = buckets.map((bucket, idx) => ({id: bucket._id, bucket: bucket.bucketName}));
+
+        res.status(200).json(bucketNames);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -48,7 +52,14 @@ const ListObjects = asyncHandler(async (req, res) => {
             createdBy: _userId,
             bucketName: req.params.bucketName,
         });
-        res.status(200).json(bucket.objects);
+
+        const objects = bucket.objects.map((object, idx) => ({
+            id: object._id,
+            fileName: object.fileName,
+            fileHash: object.fileHash,
+            dateUploaded: bucket._id.getTimestamp(),
+        }));
+        res.status(200).json(objects);
     } catch (err) {
         res.status(500).send(err);
     }
