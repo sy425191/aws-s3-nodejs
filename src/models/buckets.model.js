@@ -12,12 +12,10 @@ const BucketSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  Objects: [
+  objects: [
     {
       fileHash: {
         type: String,
-        unique: true,
-        required: true,
         lowercase: true,
         trim: true,
       },
@@ -36,8 +34,14 @@ const BucketSchema = new Schema({
         lowercase: true,
         trim: true,
       },
+      filePath: {
+        type: String,
+        lowercase: true,
+        trim: true,
+      },
     },
   ],
 });
 
-export const User = mongoose.model("Bucket", BucketSchema);
+
+export const Bucket = mongoose.model("Bucket", BucketSchema);
