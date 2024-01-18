@@ -6,8 +6,17 @@ import fs from "fs";
 const ListBuckets = asyncHandler(async (req, res) => {
     const _userId = "5f9d88b9c7b8d6b4c8b0b0b4";
 
+    const { page = 1, limit = 10} = req.query;
+
+    const options = {
+        page: parseInt(page, 10),
+        limit: parseInt(limit, 10),
+        skip: (page - 1) * limit,
+    };
+
     try {
-        const buckets = await Bucket.find({ createdBy: _userId });
+        // const buckets = await Bucket.paginate({ createdBy: _userId }, options);
+        const buckets = await Bucket.find({ createdBy: _userId }, {bucketName: 1}, options);
         // only give back the bucket names
 
         const bucketNames = buckets.map((bucket, idx) => ({id: bucket._id, bucket: bucket.bucketName}));
@@ -47,11 +56,17 @@ const CreateBucket = asyncHandler(async (req, res) => {
 const ListObjects = asyncHandler(async (req, res) => {
     const _userId = "5f9d88b9c7b8d6b4c8b0b0b4";
 
+    const options = {
+        page: parseInt(page, 10),
+        limit: parseInt(limit, 10),
+        skip: (page - 1) * limit,
+    };
+
     try {
         const bucket = await Bucket.findOne({
             createdBy: _userId,
             bucketName: req.params.bucketName,
-        });
+        }, {objects: 1}, options);
 
         const objects = bucket.objects.map((object, idx) => ({
             id: object._id,
