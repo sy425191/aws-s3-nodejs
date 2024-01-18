@@ -45,6 +45,9 @@ All endpoints are prefixed with `/api/v1/s3`.
 - **Description:** Retrieve a paginated list of all S3 buckets.
 - **Usage:** Retrieve information about existing S3 buckets with pagination.
 
+##### Example
+[Open API Endpoint](http://20.244.24.70/api/v1/s3/list)
+
 #### Create Bucket
 
 - **Endpoint:** `POST /create`
