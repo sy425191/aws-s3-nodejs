@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
     <h1>AWS S3 Server</h1>
     <h2>API</h2>
     <ul>
-        <li><a href="/api/v1/s3">/api/v1/s3</a></li>
+        <li><a href="/api/v1/s3/list">/api/v1/s3</a></li>
         <li><a href="/api/v1/s3/:bucketName">/api/v1/s3/:bucketName</a></li>
         <li><a href="/api/v1/s3/:bucketName/:objectKey">/api/v1/s3/:bucketName/:objectKey</a></li>
     </ul>

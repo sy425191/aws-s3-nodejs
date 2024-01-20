@@ -56,6 +56,8 @@ const CreateBucket = asyncHandler(async (req, res) => {
 const ListObjects = asyncHandler(async (req, res) => {
     const _userId = "5f9d88b9c7b8d6b4c8b0b0b4";
 
+    const { page = 1, limit = 10} = req.query;
+
     const options = {
         page: parseInt(page, 10),
         limit: parseInt(limit, 10),
